@@ -1,20 +1,24 @@
 /* _____________ ここにコードを記入 _____________ */
 
-type First<T extends any[]> = T extends [] ? never : T[0];
+type Length<T extends readonly any[]> = T["length"];
 
 /* _____________ テストケース _____________ */
 import type { Equal, Expect } from "@type-challenges/utils";
 
-type cases = [
-  Expect<Equal<First<[3, 2, 1]>, 3>>,
-  Expect<Equal<First<[() => 123, { a: string }]>, () => 123>>,
-  Expect<Equal<First<[]>, never>>,
-  Expect<Equal<First<[undefined]>, undefined>>
-];
+const tesla = ["tesla", "model 3", "model X", "model Y"] as const;
+const spaceX = [
+  "FALCON 9",
+  "FALCON HEAVY",
+  "DRAGON",
+  "STARSHIP",
+  "HUMAN SPACEFLIGHT",
+] as const;
 
-type errors = [
+type cases = [
+  Expect<Equal<Length<typeof tesla>, 4>>,
+  Expect<Equal<Length<typeof spaceX>, 5>>,
   // @ts-expect-error
-  First<"notArray">,
+  Length<5>,
   // @ts-expect-error
-  First<{ 0: "arrayLike" }>
+  Length<"hello world">
 ];
