@@ -9,7 +9,7 @@
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
-	"packageManager": "pnpm@10.16.1",
+	"packageManager": "pnpm@10.17.0",
 	"devDependencies": {
 		"@type-challenges/utils": "^0.1.1",
 		"typescript": "^5.9.2"
